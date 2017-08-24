@@ -1,0 +1,24 @@
+{
+  "name": "wrapperfall",
+  "version": "1.0.0",
+  "description": "\"Same as async.waterfall but with ability to pass array of tasks and one common function (wrapper) for execution\"",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jsifalda/wrapperfall.git"
+  },
+  "keywords": [
+    "async",
+    "waterfall",
+    "promise"
+  ],
+  "author": "jsifalda",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jsifalda/wrapperfall/issues"
+  },
+  "homepage": "https://github.com/jsifalda/wrapperfall#readme"
+}
