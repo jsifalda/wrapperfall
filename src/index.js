@@ -1,23 +1,31 @@
-var waterfall = (...args) => { // list, init, wrapper
-  var list = args.shift()
-  var init = null
-  var wrapper = null
-  if (args.length === 1 && typeof args[0] === 'function') {
-    wrapper = args.shift()
-  } else if (args.length === 2) {
-    init = args.shift()
-    wrapper = args.shift()
+var wrap = (wrapper, current) => {
+  if (typeof wrapper === 'function') {
+    return wrapper(current)
   }
 
-  return list.reduce((prev, current) => {
-    return prev.then((x) => {
-      if (typeof wrapper === 'function') {
-        return wrapper(current)
-      }
+  return current()
+}
 
-      return current(x)
+var waterfall = (list, wrapper) => {
+  var getTask = () => {
+    return (list || []).shift()
+  }
+
+  var exec = () => {
+    return new Promise((resolve, reject) => {
+      var task = getTask()
+      if (task) {
+        resolve(Promise.resolve(wrap(wrapper, task))
+        .then(() => {
+          return exec()
+        }))
+      } else {
+        resolve()
+      }
     })
-  }, Promise.resolve(init))
+  }
+
+  return exec()
 }
 
 module.exports = waterfall
