@@ -7,8 +7,9 @@ var wrap = (wrapper, current) => {
 }
 
 var waterfall = (list, wrapper) => {
+  var tasks = (list || []).slice(0)
   var getTask = () => {
-    return (list || []).shift()
+    return tasks.shift()
   }
 
   var exec = () => {
