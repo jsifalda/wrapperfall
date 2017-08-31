@@ -1,9 +1,12 @@
 var wrap = (wrapper, current) => {
+  var result = null
   if (typeof wrapper === 'function') {
-    return wrapper(current)
+    result = wrapper(current)
+  } else {
+    result = current()
   }
 
-  return current()
+  return Promise.resolve(result)
 }
 
 var waterfall = (list, wrapper) => {
@@ -16,7 +19,7 @@ var waterfall = (list, wrapper) => {
     return new Promise((resolve, reject) => {
       var task = getTask()
       if (task) {
-        resolve(Promise.resolve(wrap(wrapper, task))
+        resolve(wrap(wrapper, task)
         .then(() => {
           return exec()
         }))
