@@ -1,6 +1,6 @@
 {
   "name": "wrapperfall",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "\"Same as async.waterfall but with ability to pass array of tasks and one common function (wrapper) for execution\"",
   "main": "src/index.js",
   "scripts": {
